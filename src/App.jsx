@@ -122,10 +122,11 @@ function App() {
       ) : (
         <Box
           sx={{
-            height:"51rem",
+            
             backgroundImage:'url("./img/rps.png")',
             backgroundRepeat:"no-repeat",
             backgroundSize:"cover",
+            minHeight:"100vh",
             display:"flex",
             justifyContent:"center",
             alignItems:"center",
