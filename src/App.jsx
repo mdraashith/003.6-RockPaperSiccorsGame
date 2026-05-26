@@ -115,7 +115,7 @@ function App() {
               alignItems: "center",
 
               gap: {
-                xs: "1rem",
+                xs: "4.5rem",
                 sm: "4rem",
                 md: "12rem",
               },
@@ -240,6 +240,14 @@ function App() {
             <Box
               sx={{
 
+                position: "absolute",
+
+                top: "50%",
+
+                left: "50%",
+
+                transform: "translate(-50%,-50%)",
+
                 display: "flex",
 
                 flexDirection: "column",
@@ -256,13 +264,6 @@ function App() {
                 width: {
                   xs: "80%",
                   sm: "28rem",
-                },
-
-                margin: "auto",
-
-                marginTop: {
-                  xs: "20%",
-                  md: "11%",
                 },
 
                 borderRadius: "30px",
