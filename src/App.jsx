@@ -1,146 +1,510 @@
 import { useState } from "react";
 import { Button, Box, Typography, Modal } from "@mui/material";
 import "./App.css";
+
 function App() {
-  const [start,setStart]=useState(true);
-  const [modalbox,setmodalbox]=useState(false);
-  const [user,setUser]=useState("");
-  const [computer,setComputer]=useState("");
-  const [result,setResult]=useState("");
 
-  const options=["stone","paper","scissor"];
-  const images ={stone:"./img/stone.png",
-                 paper:"./img/paper.png",
-                 scissor:"./img/sisscor.png"};
+  const [start, setStart] = useState(true);
 
-  const randomoptions=()=>options[Math.floor(Math.random()*3)];
+  const [modalbox, setmodalbox] = useState(false);
 
-    function winner(human,ai)
-    {
-        if (human===ai) 
-        {
-          setResult("Draw");
-        }
-        else if((human==="stone" && ai==="scissor")||(human==="paper" && ai==="stone")||(human==="scissor" && ai==="paper")) 
-        {
-          setResult("You Win");
-        }
-        else
-        {
-          setResult("Computer Wins");
-        }
+  const [user, setUser] = useState("");
+
+  const [computer, setComputer] = useState("");
+
+  const [result, setResult] = useState("");
+
+  const options = ["stone", "paper", "scissor"];
+
+  const images = {
+
+    stone: "./img/stone.png",
+
+    paper: "./img/paper.png",
+
+    scissor: "./img/sisscor.png",
+  };
+
+  const randomoptions = () =>
+    options[Math.floor(Math.random() * 3)];
+
+  function winner(human, ai) {
+
+    if (human === ai) {
+
+      setResult("Draw");
     }
-    const play=(choice)=>{
-    const comp=randomoptions();
+
+    else if (
+
+      (human === "stone" && ai === "scissor")
+
+      ||
+
+      (human === "paper" && ai === "stone")
+
+      ||
+
+      (human === "scissor" && ai === "paper")
+
+    ) {
+
+      setResult("You Win");
+    }
+
+    else {
+
+      setResult("Computer Wins");
+    }
+  }
+
+  const play = (choice) => {
+
+    const comp = randomoptions();
+
     setUser(choice);
+
     setComputer(comp);
+
     winner(choice, comp);
+
     setmodalbox(true);
   };
 
   return (
     <>
-      {!start ?(
+
+      {!start ? (
+
         <Box
           sx={{
-            height:"51rem",
-            backgroundImage:'url("./img/rps4.png")',
-            backgroundRepeat:"no-repeat",
-            backgroundSize: "cover",    
+
+            minHeight: "100vh",
+
+            backgroundImage:
+              'url("./img/rps4.png")',
+
+            backgroundRepeat: "no-repeat",
+
+            backgroundSize: {
+              xs: "100% auto",
+              sm: "cover",
+            },
+
             backgroundPosition: "center",
-            width:"100%",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
+
+            width: "100%",
+
+            display: "flex",
+
+            justifyContent: "center",
+
+            alignItems: "center",
           }}
         >
-        <Box sx={{display:"flex",gap:"15rem"}}>
-            <Button onClick={()=>play("stone")} sx={{
-             
-                "&:hover": {  background: "transparent",transform:"scale(1.1)" }
-              }}
-            >
-              <img src={images.stone} style={{width:"15rem", borderRadius:"50%",}} />
-            </Button>
 
-            <Button onClick={()=>play("paper")} sx={{
-                "&:hover": { transform: "scale(1.1)" }
-              }}
-            >
-              <img src={images.paper}style={{width:"15rem",borderRadius:"50%",background:"black",}} />
-            </Button>
+          {/* GAME BUTTONS */}
+
+          <Box
+            sx={{
+
+              display: "flex",
+
+              justifyContent: "center",
+
+              alignItems: "center",
+
+              gap: {
+                xs: "1rem",
+                sm: "4rem",
+                md: "12rem",
+              },
+
+              width: "100%",
+            }}
+          >
+
+            {/* STONE */}
 
             <Button
-              onClick={()=>play("scissor")}
+              onClick={() => play("stone")}
+
               sx={{
-                "&:hover": { transform: "scale(1.1)" }
+
+                "&:hover": {
+
+                  background: "transparent",
+
+                  transform: "scale(1.1)",
+                }
               }}
             >
-              <img src={images.scissor}style={{width:"15rem",borderRadius:"50%"}} />
+
+              <Box
+                component="img"
+
+                src={images.stone}
+
+                sx={{
+
+                  width: {
+                    xs: "5rem",
+                    sm: "8rem",
+                    md: "15rem",
+                  },
+
+                  borderRadius: "50%",
+                }}
+              />
+
+            </Button>
+
+            {/* PAPER */}
+
+            <Button
+              onClick={() => play("paper")}
+
+              sx={{
+
+                "&:hover": {
+
+                  transform: "scale(1.1)",
+                }
+              }}
+            >
+
+              <Box
+                component="img"
+
+                src={images.paper}
+
+                sx={{
+
+                  width: {
+                    xs: "5rem",
+                    sm: "8rem",
+                    md: "15rem",
+                  },
+
+                  borderRadius: "50%",
+
+                  background: "black",
+                }}
+              />
+
+            </Button>
+
+            {/* SCISSOR */}
+
+            <Button
+              onClick={() => play("scissor")}
+
+              sx={{
+
+                "&:hover": {
+
+                  transform: "scale(1.1)",
+                }
+              }}
+            >
+
+              <Box
+                component="img"
+
+                src={images.scissor}
+
+                sx={{
+
+                  width: {
+                    xs: "5rem",
+                    sm: "8rem",
+                    md: "15rem",
+                  },
+
+                  borderRadius: "50%",
+                }}
+              />
+
             </Button>
 
           </Box>
 
-          <Modal open={modalbox} onClose={()=>setmodalbox(false)}>
-            <Box sx={{
-                display:"flex",
+          {/* MODAL */}
+
+          <Modal
+            open={modalbox}
+
+            onClose={() => setmodalbox(false)}
+          >
+
+            <Box
+              sx={{
+
+                display: "flex",
+
                 flexDirection: "column",
-                justifyContent:"center",
+
+                justifyContent: "center",
+
                 alignItems: "center",
-                background: "linear-gradient(to right, #000000, #060606)",
-                height:"31.5rem",
-                width:"28rem",
-                margin:"auto",
-                marginTop:"11%",
+
+                background:
+                  "linear-gradient(to right, #000000, #060606)",
+
+                minHeight: {
+                  xs: "24rem",
+                  md: "31.5rem",
+                },
+
+                width: {
+                  xs: "90%",
+                  sm: "28rem",
+                },
+
+                margin: "auto",
+
+                marginTop: {
+                  xs: "20%",
+                  md: "11%",
+                },
+
                 borderRadius: "30px",
+
                 textAlign: "center",
-                padding:"1rem",
-                
+
+                padding: "1rem",
               }}
             >
-              <Typography variant="h4" sx={{color:"red",fontWeight:"bolder"}}>You</Typography>
+
+              {/* YOU */}
+
+              <Typography
+                variant="h4"
+
+                sx={{
+
+                  color: "red",
+
+                  fontWeight: "bolder",
+
+                  fontSize: {
+                    xs: "1.5rem",
+                    md: "2rem",
+                  }
+                }}
+              >
+                You
+              </Typography>
+
               {user && (
-                <img src={images[user]} style={{width: "185px",height: "185px"}}/>
+
+                <Box
+                  component="img"
+
+                  src={images[user]}
+
+                  sx={{
+
+                    width: {
+                      xs: "90px",
+                      sm: "130px",
+                      md: "185px",
+                    },
+
+                    height: {
+                      xs: "90px",
+                      sm: "130px",
+                      md: "185px",
+                    },
+                  }}
+                />
               )}
 
-              <Typography variant="h4" sx={{color:"blue",fontWeight:"bolder"}}>Computer</Typography>
-               {computer && (
-                <img src={images[computer]} style={{width: "185px",height: "185px"}}/>
+              {/* COMPUTER */}
+
+              <Typography
+                variant="h4"
+
+                sx={{
+
+                  color: "blue",
+
+                  fontWeight: "bolder",
+
+                  fontSize: {
+                    xs: "1.5rem",
+                    md: "2rem",
+                  }
+                }}
+              >
+                Computer
+              </Typography>
+
+              {computer && (
+
+                <Box
+                  component="img"
+
+                  src={images[computer]}
+
+                  sx={{
+
+                    width: {
+                      xs: "90px",
+                      sm: "130px",
+                      md: "185px",
+                    },
+
+                    height: {
+                      xs: "90px",
+                      sm: "130px",
+                      md: "185px",
+                    },
+                  }}
+                />
               )}
 
-              <Typography variant="h4" sx={{color:"green",fontWeight:"bolder"}}>{result}</Typography>
+              {/* RESULT */}
 
-              <Button variant="contained" sx={{
-            background:"linear-gradient(to right, #800202, #3c0303)",
-            fontSize:"1.5rem",width:"9rem",borderRadius:"10px",fontWeight:"bolder", "&:hover": {
-            background: "linear-gradient(to right, #ce0d0d, #5c0404)", 
-            transform: "scale(1.05)",
-            transition: "0.3s" }}} onClick={()=>setmodalbox(false)}>OK</Button>
+              <Typography
+                variant="h4"
+
+                sx={{
+
+                  color: "green",
+
+                  fontWeight: "bolder",
+
+                  fontSize: {
+                    xs: "1.5rem",
+                    md: "2rem",
+                  }
+                }}
+              >
+                {result}
+              </Typography>
+
+              {/* OK BUTTON */}
+
+              <Button
+                variant="contained"
+
+                sx={{
+
+                  background:
+                    "linear-gradient(to right, #800202, #3c0303)",
+
+                  fontSize: {
+                    xs: "1rem",
+                    md: "1.5rem",
+                  },
+
+                  width: {
+                    xs: "7rem",
+                    md: "9rem",
+                  },
+
+                  borderRadius: "10px",
+
+                  fontWeight: "bolder",
+
+                  marginTop: "1rem",
+
+                  "&:hover": {
+
+                    background:
+                      "linear-gradient(to right, #ce0d0d, #5c0404)",
+
+                    transform: "scale(1.05)",
+
+                    transition: "0.3s",
+                  }
+                }}
+
+                onClick={() => setmodalbox(false)}
+              >
+                OK
+              </Button>
+
             </Box>
+
           </Modal>
+
         </Box>
+
       ) : (
+
         <Box
           sx={{
-            
-            backgroundImage:'url("./img/rps.png")',
-            backgroundRepeat:"no-repeat",
-            backgroundSize:"cover",
-            minHeight:"100vh",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
+
+            backgroundImage:
+              'url("./img/rps.png")',
+
+            backgroundRepeat: "no-repeat",
+
+            backgroundSize: {
+              xs: "100% auto",
+              sm: "cover",
+            },
+
+            backgroundPosition: "center",
+
+            minHeight: "100vh",
+
+            display: "flex",
+
+            justifyContent: "center",
+
+            alignItems: "center",
           }}
         >
-          <Button variant="contained" sx={{
-            background:"linear-gradient(to right, #800202, #3c0303)",
-            fontSize:"1.5rem",width:"9rem",borderRadius:"10px",fontWeight:"bolder",marginTop:"45%", 
-            "&:hover": {
-            background: "linear-gradient(to right, #ce0d0d, #5c0404)", 
-            transform: "scale(1.05)",
-           transition: "0.3s" }}}onClick={() => setStart(false)}>Play</Button>
+
+          <Button
+            variant="contained"
+
+            sx={{
+
+              background:
+                "linear-gradient(to right, #800202, #3c0303)",
+
+              fontSize: {
+                xs: "1rem",
+                md: "1.5rem",
+              },
+
+              width: {
+                xs: "7rem",
+                md: "9rem",
+              },
+
+              borderRadius: "10px",
+
+              fontWeight: "bolder",
+
+              marginTop: {
+                xs: "60%",
+                md: "45%",
+              },
+
+              "&:hover": {
+
+                background:
+                  "linear-gradient(to right, #ce0d0d, #5c0404)",
+
+                transform: "scale(1.05)",
+
+                transition: "0.3s",
+              }
+            }}
+
+            onClick={() => setStart(false)}
+          >
+            Play
+          </Button>
+
         </Box>
       )}
+
     </>
   );
 }
