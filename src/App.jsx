@@ -115,7 +115,7 @@ function App() {
               alignItems: "center",
 
               gap: {
-                xs: "1rem",
+                xs: "2.1rem",
                 sm: "4rem",
                 md: "12rem",
               },
