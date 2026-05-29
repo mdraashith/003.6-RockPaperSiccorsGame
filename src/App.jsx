@@ -93,7 +93,8 @@ function App() {
 
             backgroundPosition: "center",
 
-            width: "100%",
+            overflow: "hidden",
+            width: "100vh",
 
             display: "flex",
 
